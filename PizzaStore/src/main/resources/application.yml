@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/PizzaStore
+    username: root
+    password: admin
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+security:
+  configuration:
+    secret-jwt: qwerty-123456
+    permission:
+      all:
+        - /login
+        - /orders
+        - /orders/**
+        - /test/**
+      receptionist:
+        - /receptionist/**
+      chef:
+        - /chef/**
+      delivery:
+        - /delivery/**
