@@ -28,6 +28,12 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.7.2'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
 
+    // camunda implementation
+    implementation group: 'org.camunda.bpm', name: 'camunda-engine-plugin-spin', version: '7.18.0-alpha3'
+    implementation group: 'org.camunda.bpm.springboot', name: 'camunda-bpm-spring-boot-starter-rest', version: '7.18.0-alpha3'
+    implementation group: 'org.camunda.bpm.springboot', name: 'camunda-bpm-spring-boot-starter-webapp', version: '7.18.0-alpha3'
+    implementation group: 'org.camunda.bpm', name: 'camunda-engine-rest', version: '7.18.0-alpha3'
+
 
 
     annotationProcessor 'org.projectlombok:lombok'

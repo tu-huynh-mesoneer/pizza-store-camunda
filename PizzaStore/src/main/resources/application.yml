@@ -1,6 +1,9 @@
+#
+# database configuration
+#
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/PizzaStore
+    url: jdbc:mysql://localhost:3306/pizaa_camunda
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -9,7 +12,12 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    hibernate:
+      ddl-auto: update
 
+#
+#  security configuration
+#
 security:
   configuration:
     secret-jwt: qwerty-123456
@@ -19,9 +27,18 @@ security:
         - /orders
         - /orders/**
         - /test/**
+        - /camunda/**
+        - /engine-rest/**
       receptionist:
         - /receptionist/**
       chef:
         - /chef/**
       delivery:
         - /delivery/**
+
+#
+#  camunda configuration
+#
+camunda.bpm.admin-user:
+  id: demo
+  password: demo
