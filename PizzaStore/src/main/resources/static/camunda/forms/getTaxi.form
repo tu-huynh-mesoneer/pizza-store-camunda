@@ -1,0 +1,36 @@
+{
+  "components": [
+    {
+      "label": "Pask Cash",
+      "type": "textfield",
+      "key": "money",
+      "description": "How much cash do you want to bring",
+      "validate": {
+        "required": true
+      }
+    },
+    {
+      "label": "Where are you headed?",
+      "type": "textfield",
+      "key": "country",
+      "validate": {
+        "required": true
+      },
+      "description": "Country you are going to"
+    },
+    {
+      "label": "Enter price of Taxi",
+      "type": "textfield",
+      "key": "texCost",
+      "description": "for tax resons"
+    }
+  ],
+  "type": "default",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.1.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.17.0",
+  "schemaVersion": 4
+}

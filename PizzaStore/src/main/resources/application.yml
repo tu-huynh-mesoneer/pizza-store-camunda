@@ -3,7 +3,7 @@
 #
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/pizaa_camunda
+    url: jdbc:mysql://localhost:3306/pizza_v2?nullCatalogMeansCurrent=true
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
