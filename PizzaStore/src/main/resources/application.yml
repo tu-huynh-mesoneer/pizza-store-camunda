@@ -3,7 +3,7 @@
 #
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/pizza_v2?nullCatalogMeansCurrent=true
+    url: jdbc:mysql://localhost:3306/pizza_store
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -29,6 +29,7 @@ security:
         - /test/**
         - /camunda/**
         - /engine-rest/**
+        - /api/internal/**
       receptionist:
         - /receptionist/**
       chef:

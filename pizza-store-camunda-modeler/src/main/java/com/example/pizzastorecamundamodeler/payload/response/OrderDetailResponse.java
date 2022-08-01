@@ -1,14 +1,19 @@
-package com.example.pizzastore.payload.response.orders;
+package com.example.pizzastorecamundamodeler.payload.response;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+import spinjar.com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 @Getter
 @Setter
-public class OrdersDetailResponse {
+public class OrderDetailResponse {
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime orderedDateTime;
     private String orderId;
     private String name;

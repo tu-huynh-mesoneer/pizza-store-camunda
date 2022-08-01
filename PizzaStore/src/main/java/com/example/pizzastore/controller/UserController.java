@@ -26,7 +26,7 @@ public class UserController {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Role role = new Role();
         role.setId(1);
-        role.setName("receptionist");
+        role.setName("Receptionist");
         User user = new User();
         user.setName("tuhuynh");
         user.setPassword(passwordEncoder.encode("12345"));

@@ -4,14 +4,11 @@ import com.example.pizzastore.enums.CrustType;
 import com.example.pizzastore.enums.SizeType;
 import com.example.pizzastore.enums.converter.CrustTypeConverter;
 import com.example.pizzastore.enums.converter.SizeTypeConverter;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,6 +20,8 @@ public class Pizza implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
     private String name;

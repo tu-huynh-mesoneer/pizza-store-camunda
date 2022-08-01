@@ -1,22 +1,22 @@
-package com.example.pizzastore.enums;
+package com.example.pizzastorecamundamodeler.enums;
+
+import java.util.stream.Stream;
 
 
-import com.example.pizzastore.enums.base.CodeEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Map;
 import java.util.stream.Stream;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum SizeType implements CodeEnum {
+public enum SizeType {
 
     small("1", "small", 1),
     medium("2", "medium", 2),
-    large("3", "large", 3);
+    large("3", "large ", 3);
 
     private final String value;
     private final String display;
@@ -41,13 +41,9 @@ public enum SizeType implements CodeEnum {
      * @param value the value
      * @return the enum demo
      */
-    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    @JsonCreator(mode = JsonCreator.Mode.DEFAULT)
     public static SizeType of(String value) {
-        if(StringUtils.isNumeric(value)) {
-            return ObjectUtils.isEmpty(value) ? null : Stream.of(SizeType.values()).filter(e -> value.equals(e.getValue())).findFirst().orElse(null);
-        } else {
-            return ObjectUtils.isEmpty(value) ? null : Stream.of(SizeType.values()).filter(e -> value.equals(e.getDisplay())).findFirst().orElse(null);
-        }
+        return ObjectUtils.isEmpty(value) ? null : Stream.of(SizeType.values()).filter(e -> value.equals(e.getValue())).findFirst().orElse(null);
     }
 
     /**
@@ -56,7 +52,8 @@ public enum SizeType implements CodeEnum {
      * @param value the value
      * @return the enum demo
      */
-    public static SizeType ofObject(Object value) {
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static SizeType of(Object value) {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }
@@ -72,7 +69,6 @@ public enum SizeType implements CodeEnum {
      *
      * @return the value
      */
-    @Override
     public String getValue() {
         return this.value;
     }
@@ -82,7 +78,6 @@ public enum SizeType implements CodeEnum {
      *
      * @return the display
      */
-    @Override
     public String getDisplay() {
         return this.display;
     }
@@ -92,7 +87,6 @@ public enum SizeType implements CodeEnum {
      *
      * @return the sort order
      */
-    @Override
     @JsonIgnore
     public int getSortOrder() {
         return this.sortOrder;

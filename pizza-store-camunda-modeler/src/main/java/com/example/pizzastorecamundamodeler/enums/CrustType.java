@@ -1,22 +1,19 @@
-package com.example.pizzastore.enums;
+package com.example.pizzastorecamundamodeler.enums;
 
 
-import com.example.pizzastore.enums.base.CodeEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Map;
 import java.util.stream.Stream;
 
 @JsonFormat(shape = JsonFormat.Shape.STRING)
-public enum SizeType implements CodeEnum {
+public enum CrustType {
 
-    small("1", "small", 1),
-    medium("2", "medium", 2),
-    large("3", "large", 3);
+    thin("1", "thin", 1),
+    thick("2", "thick", 2),
+    cripsy("3", "cripsy", 3);
 
     private final String value;
     private final String display;
@@ -29,7 +26,7 @@ public enum SizeType implements CodeEnum {
      * @param display   the display
      * @param sortOrder the sort order
      */
-    private SizeType(String value, String display, int sortOrder) {
+    private CrustType(String value, String display, int sortOrder) {
         this.value = value;
         this.display = display;
         this.sortOrder = sortOrder;
@@ -41,13 +38,9 @@ public enum SizeType implements CodeEnum {
      * @param value the value
      * @return the enum demo
      */
-    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
-    public static SizeType of(String value) {
-        if(StringUtils.isNumeric(value)) {
-            return ObjectUtils.isEmpty(value) ? null : Stream.of(SizeType.values()).filter(e -> value.equals(e.getValue())).findFirst().orElse(null);
-        } else {
-            return ObjectUtils.isEmpty(value) ? null : Stream.of(SizeType.values()).filter(e -> value.equals(e.getDisplay())).findFirst().orElse(null);
-        }
+    @JsonCreator(mode = JsonCreator.Mode.DEFAULT)
+    public static CrustType of(String value) {
+        return ObjectUtils.isEmpty(value) ? null : Stream.of(CrustType.values()).filter(e -> value.equals(e.getValue())).findFirst().orElse(null);
     }
 
     /**
@@ -56,15 +49,16 @@ public enum SizeType implements CodeEnum {
      * @param value the value
      * @return the enum demo
      */
-    public static SizeType ofObject(Object value) {
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CrustType of(Object value) {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }
         if (value instanceof Map) {
             Map<String, String> mapEnum = (Map<String, String>) value;
-            return ObjectUtils.isEmpty(value) ? null : Stream.of(SizeType.values()).filter(e -> e.getValue().equals(mapEnum.get("value"))).findFirst().orElseThrow(IllegalArgumentException::new);
+            return ObjectUtils.isEmpty(value) ? null : Stream.of(CrustType.values()).filter(e -> e.getValue().equals(mapEnum.get("value"))).findFirst().orElseThrow(IllegalArgumentException::new);
         }
-        return ObjectUtils.isEmpty(value) ? null : Stream.of(SizeType.values()).filter(e -> value.equals(e.getValue())).findFirst().orElseThrow(IllegalArgumentException::new);
+        return ObjectUtils.isEmpty(value) ? null : Stream.of(CrustType.values()).filter(e -> value.equals(e.getValue())).findFirst().orElseThrow(IllegalArgumentException::new);
     }
 
     /**
@@ -72,7 +66,6 @@ public enum SizeType implements CodeEnum {
      *
      * @return the value
      */
-    @Override
     public String getValue() {
         return this.value;
     }
@@ -82,7 +75,6 @@ public enum SizeType implements CodeEnum {
      *
      * @return the display
      */
-    @Override
     public String getDisplay() {
         return this.display;
     }
@@ -92,8 +84,6 @@ public enum SizeType implements CodeEnum {
      *
      * @return the sort order
      */
-    @Override
-    @JsonIgnore
     public int getSortOrder() {
         return this.sortOrder;
     }

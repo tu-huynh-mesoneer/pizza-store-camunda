@@ -4,17 +4,18 @@ package com.example.pizzastore.enums;
 import com.example.pizzastore.enums.base.CodeEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.util.Map;
 import java.util.stream.Stream;
 
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+@JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum CrustType implements CodeEnum {
 
-    THIN("1", "thin", 1),
-    THICK("2", "thick", 2),
-    CRIPSY ("3", "cripsy", 3);
+    thin("1", "thin", 1),
+    thick("2", "thick", 2),
+    cripsy ("3", "cripsy", 3);
 
     private final String value;
     private final String display;
@@ -39,9 +40,13 @@ public enum CrustType implements CodeEnum {
      * @param value the value
      * @return the enum demo
      */
-    @JsonCreator(mode = JsonCreator.Mode.DEFAULT)
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static CrustType of(String value) {
-        return ObjectUtils.isEmpty(value) ? null : Stream.of(CrustType.values()).filter(e -> value.equals(e.getValue())).findFirst().orElse(null);
+        if(StringUtils.isNumeric(value)) {
+            return ObjectUtils.isEmpty(value) ? null : Stream.of(CrustType.values()).filter(e -> value.equals(e.getValue())).findFirst().orElse(null);
+        } else {
+            return ObjectUtils.isEmpty(value) ? null : Stream.of(CrustType.values()).filter(e -> value.equals(e.getDisplay())).findFirst().orElse(null);
+        }
     }
 
     /**
@@ -50,8 +55,7 @@ public enum CrustType implements CodeEnum {
      * @param value the value
      * @return the enum demo
      */
-    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
-    public static CrustType of(Object value) {
+    public static CrustType ofObject(Object value) {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }

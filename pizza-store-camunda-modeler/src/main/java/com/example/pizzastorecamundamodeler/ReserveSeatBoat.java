@@ -1,4 +1,5 @@
-package com.example.pizzastore.camunda.demo;
+package com.example.pizzastorecamundamodeler;
+
 
 import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -28,3 +29,4 @@ public class ReserveSeatBoat implements JavaDelegate {
         delegateExecution.setVariable("ticketType", ticketType);
     }
 }
+
