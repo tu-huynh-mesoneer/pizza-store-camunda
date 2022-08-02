@@ -66,7 +66,7 @@ public class OrderConfirmDelegate implements JavaDelegate {
                     "A cheap ticket has led to a small wave throwing you over board");
         }
         if (response.getStatusCode() != HttpStatus.OK) {
-            throw new BpmnError("Fall_overBoard",
+            throw new BpmnError("Bad request",
                     "A cheap ticket has led to a small wave throwing you over board");
         }
         return response.getBody();

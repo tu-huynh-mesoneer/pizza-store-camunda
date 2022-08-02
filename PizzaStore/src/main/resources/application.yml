@@ -36,10 +36,3 @@ security:
         - /chef/**
       delivery:
         - /delivery/**
-
-#
-#  camunda configuration
-#
-camunda.bpm.admin-user:
-  id: demo
-  password: demo
